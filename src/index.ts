@@ -42,7 +42,8 @@ main();
 
 
 import 'dotenv/config';
-import { createUser, recordLogin, getStreak, simulateMissedDay,listAllUsersWithStreak } from './streak';
+import { createUser, recordLogin, getStreak, simulateMissedDay, listAllUsersWithStreak } from './streak';
+import { createHabit, getHabitsByUser, getHabitById, updateHabit, deleteHabit } from './habit';
 
 async function main() {
   console.log('\n--- 1. Criando usuário ---');
@@ -67,6 +68,28 @@ async function main() {
   console.log('\n--- 7. Listando todos os usuários com streak ---');
   const streaks = await listAllUsersWithStreak();
   console.log(streaks);
+
+  // CRUD de hábitos
+  console.log('\n--- 8. Criando hábitos ---');
+  const h1 = await createHabit(user.id, 'Ler 30 minutos', 'Leitura diária antes de dormir');
+  const h2 = await createHabit(user.id, 'Exercício');
+
+  console.log('\n--- 9. Listando hábitos do usuário ---');
+  const habits = await getHabitsByUser(user.id);
+  console.log(habits);
+
+  console.log('\n--- 10. Buscando hábito por id ---');
+  const found = await getHabitById(h1.id);
+  console.log(found);
+
+  console.log('\n--- 11. Atualizando hábito ---');
+  await updateHabit(h1.id, { title: 'Ler 1 hora', active: true });
+
+  console.log('\n--- 12. Deletando hábito ---');
+  await deleteHabit(h2.id);
+
+  console.log('\n--- 13. Hábitos após deleção ---');
+  console.log(await getHabitsByUser(user.id));
 }
 
 main().catch(console.error);

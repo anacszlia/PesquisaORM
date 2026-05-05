@@ -39,7 +39,7 @@ async function main() {
 
 main();
 */
-
+/*
 
 import 'dotenv/config';
 import { createUser, recordLogin, getStreak, simulateMissedDay, listAllUsersWithStreak } from './streak';
@@ -93,3 +93,4 @@ async function main() {
 }
 
 main().catch(console.error);
+*/

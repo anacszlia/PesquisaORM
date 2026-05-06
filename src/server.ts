@@ -8,7 +8,7 @@ import usersRouter from './routes/users';
 
 
 const app = express();
-app.use(cors({ origin: ['http://localhost:5173', 'https://habits-site-qi893jazk-anacszlias-projects.vercel.app'] }));
+app.use(cors({ origin: ['http://localhost:5173', 'https://habits-site.vercel.app'] }));
 app.use(express.json());
 
 app.use('/auth', authRouter);
